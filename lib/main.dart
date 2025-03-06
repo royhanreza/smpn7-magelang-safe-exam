@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:flutter_overlay_window/flutter_overlay_window.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:get/get.dart';
-import 'package:safe_exam/src/view/screen/exam_screen.dart';
-import 'package:safe_exam/src/view/screen/home_screen.dart';
-import 'package:safe_exam/src/view/screen/request_display_over_apps_permission_screen.dart';
-import 'package:safe_exam/src/view/screen/scan_screen.dart';
 import 'package:safe_exam/src/view/screen/start_screen.dart';
 import 'package:safe_exam/src/view/widget/overlays/quit_exam_overlay.dart';
-import 'package:safe_exam/src/view/widget/overlays/true_caller_overlay.dart';
+
+Future<void> disableScreenshot() async {
+  await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+}
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   runApp(const MyApp());
+  disableScreenshot();
 }
 
 @pragma("vm:entry-point")
